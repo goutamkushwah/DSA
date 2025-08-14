@@ -1,0 +1,96 @@
+Huffman algoritham - Huffman Algorithm is a greedy algorithm used for lossless data compression.
+                    It reduces the average length of characters used in a message by assigning
+                    shorter codes to more frequent characters and longer codes to less frequent
+                    ones.
+
+✅ Key Concepts
+1. Frequency Table – Count how often each character appears.
+2. Min-Heap/Priority Queue – Always combine the two least frequent nodes.
+3. Binary Tree – Create the Huffman Tree from combined nodes.
+4. Code Assignment – Traverse the tree to assign binary codes.
+
+🔧 Steps in Huffman Coding
+1. Count the frequency of each character.
+2. Create a priority queue of nodes (each node holds a char + its frequency).
+3. While more than one node in queue:
+4. Remove two lowest-frequency nodes.
+5. Create a new node with their sum as frequency.
+6. Make them children of the new node.
+7. Add the new node back into the queue.
+8. Assign binary codes:
+9. Left edge → 0, Right edge → 1.
+10. Traverse the tree to assign codes.
+
+example - String: "aabacabad"
+Step 1: Count Frequency
+| Character | Frequency |
+| --------- | --------- |
+| a         | 4         |
+| b         | 2         |
+| c         | 1         |
+| d         | 1         |
+
+Step 2: Create Min-Heap (Priority Queue)
+[('c',1), ('d',1), ('b',2), ('a',4)]
+
+Step 3: Build Huffman Tree
+Take two smallest: 'c' (1) and 'd' (1) → merge to form node with freq 2
+
+        (*,2)
+       /     \
+    'c'       'd'
+
+Insert it back:
+
+[('b',2), ('a',4), (*,2)]
+Take 'b' (2) and (*,2) → merge → freq 4
+
+         (*,4)
+       /       \
+     'b'       (*,2)
+             /     \
+           'c'     'd'
+Now merge (*,4) and 'a' (4) → total = 8
+
+          (*,8)
+        /       \
+     'a'        (*,4)
+              /      \
+            'b'      (*,2)
+                    /     \
+                  'c'     'd'
+
+Step 4: Assign Binary Codes
+Traverse from root
+
+Left → 0, Right → 1
+
+| Character | Code |
+| --------- | ---- |
+| a         | 0    |
+| b         | 10   |
+| c         | 1100 |
+| d         | 1101 |
+
+Step 5: Encode the String
+Original string: "aabacabad"
+
+Using codes:
+
+a → 0
+
+a → 0
+
+b → 10
+
+a → 0
+
+c → 1100
+
+a → 0
+
+b → 10
+
+a → 0
+
+d → 1101

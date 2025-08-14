@@ -1,0 +1,177 @@
+Graph - Graph Data Structure is a non-linear data structure consisting of vertices and edges.
+        It is useful in fields such as social network analysis, recommendation systems, and
+        computer networks. In the field of sports data science, graph data structure can be
+        used to analyze and understand the dynamics of team performance and player interactions
+        on the field.
+
+        A--------B
+        |        | 
+        |        |  
+        C--------D
+ Basic Terminology of Graphs
+
+| Term                         | Description                                                        | Example                            |
+| ---------------------------- | ------------------------------------------------------------------ | ---------------------------------- |
+| **Graph (G)**                | A set of **vertices** and **edges**: `G = (V, E)`                  | G = ({A, B}, {(A, B)})             |
+| **Vertex (Node)**            | A point in the graph                                               | A, B, C                            |
+| **Edge**                     | A connection between two vertices                                  | (A, B)                             |
+| **Adjacent Vertices**        | Two vertices connected by an edge                                  | A is adjacent to B                 |
+| **Degree**                   | Number of edges connected to a vertex                              | deg(A) = 2                         |
+| **Path**                     | Sequence of vertices with connecting edges                         | A → B → C                          |
+| **Simple Path**              | A path with no repeated vertices                                   | A → B → C                          |
+| **Cycle**                    | A path that starts and ends at the same vertex                     | A → B → C → A                      |
+| **Connected Graph**          | Every pair of vertices is reachable                                | No isolated nodes                  |
+| **Disconnected Graph**       | Some vertices are unreachable                                      | A is not connected to B            |
+| **Directed Graph (Digraph)** | Edges have direction                                               | A → B                              |
+| **Undirected Graph**         | Edges have no direction                                            | A — B                              |
+| **Weighted Graph**           | Edges have weights (cost, distance)                                | A —(5)— B                          |
+| **Unweighted Graph**         | All edges are equal                                                | A — B — C                          |
+| **Self-loop**                | Edge from a vertex to itself                                       | A → A                              |
+| **Parallel Edges**           | Multiple edges between same two vertices                           | A ⇄ B                              |
+| **Isolated Vertex**          | A vertex with no edge                                              | Vertex C in graph with only (A, B) |
+| **Complete Graph**           | Every pair of distinct vertices is connected                       | For 3 nodes: A—B, B—C, C—A         |
+| **Subgraph**                 | A smaller graph formed from a larger one                           | Remove some edges or nodes         |
+| **Tree**                     | A connected, acyclic undirected graph                              | Like a family tree                 |
+| **Forest**                   | Collection of disjoint trees                                       | Multiple trees                     |
+| **Acyclic Graph**            | No cycles                                                          | A → B → C                          |
+| **Bipartite Graph**          | Vertices can be divided into two sets with edges only between sets | Used in matching problems          |
+
+Types of graph 
+
+1. Based on Direction
+
+
+| Type                         | Description                                  | Example                    |
+| ---------------------------- | -------------------------------------------- | -------------------------- |
+| **Undirected Graph**         | Edges have no direction (A—B is same as B—A) | Facebook friend network    |
+| **Directed Graph (Digraph)** | Edges have direction (A → B ≠ B → A)         | Instagram follower network |
+
+2. Based on Weight
+
+
+| Type                 | Description                                 | Example                               |
+| -------------------- | ------------------------------------------- | ------------------------------------- |
+| **Unweighted Graph** | All edges are equal                         | Web page links                        |
+| **Weighted Graph**   | Edges have weights (like distances or cost) | Google Maps (distance between cities) |
+
+Undirected graph / unweighted graph
+  
+        A--------B
+        |        | 
+        |        |  
+        C--------D
+
+
+Directed graph
+
+        A-------->B
+        |         | 
+        |         |  
+        C-------->D
+
+Weighted graph
+            1
+        A--------B
+      2 |        | 3
+        |        |  
+        C--------D
+            4
+
+Some special graph
+
+
+| Type                             | Description                                                |
+| -------------------------------- | ---------------------------------------------------------- |
+| **Cyclic Graph**                 | Contains cycles (you can return to a node)                 |
+| **Acyclic Graph**                | No cycles                                                  |
+| **DAG (Directed Acyclic Graph)** | Important in scheduling, Git history                       |
+| **Connected Graph**              | All nodes are reachable                                    |
+| **Complete Graph**               | Every node is connected to every other node                |
+| **Tree**                         | A special type of graph (connected, acyclic, hierarchical) |
+
+Representation of Graphs
+    1. Adjacency Matrix  2D matrix A[V][V]
+                         A[i][j] = 1 if there is an edge between vertex i and j
+
+2. Adjacency List Array of lists: Each vertex stores a list of its neighbors
+                                   More efficient for sparse graphs
+
+Graph Traversal Algorithms
+1. Breadth-First Search (BFS)
+Level-by-level traversal
+Uses a queue
+Good for shortest path in unweighted graphs
+
+2. Depth-First Search (DFS)
+Goes as deep as possible
+Uses stack or recursion
+Good for connectivity and cycle detection
+
+Common Algorithm of Graph
+
+| Algorithm                        | Purpose                                     |
+| -------------------------------- | ------------------------------------------- |
+| **Dijkstra's Algorithm**         | Shortest path in weighted graphs            |
+| **Bellman-Ford**                 | Shortest path (can handle negative weights) |
+| **Floyd-Warshall**               | All pairs shortest path                     |
+| **Prim’s / Kruskal’s Algorithm** | Minimum Spanning Tree (MST)                 |
+| **Topological Sort**             | Ordering tasks (DAG)                        |
+| **Tarjan / Kosaraju**            | Strongly connected components in a graph    |
+
+
+Real-world Applications
+1. GPS & Maps (shortest path)
+2. Social networks (friend suggestions)
+3. Internet (web page links)
+4. Compilers (dependency resolution)
+5. AI (search problems)
+6. Biology (gene interaction networks)
+7. Blockchain (DAGs in IOTA)
+
+------------------------------------ Spanning Tree ----------------------------------------
+🟩 Minimum Spanning Tree (MST) — Explained Simply
+A Minimum Spanning Tree (MST) is a subset of edges from a connected, weighted, undirected graph that:
+Connects all the vertices together
+Has no cycles
+Has the minimum total edge weight
+
+   A
+  / \
+ 1   3
+B-----C
+ \   /
+  4 2
+   D
+
+ MST Algorithms
+
+ 1. Kruskal's Algorithm
+Greedy algorithm
+Sorts all edges by weight
+Adds smallest edge that doesn’t form a cycle
+Steps:
+Sort all edges by weight
+Use Union-Find to avoid cycles
+Add edges until all vertices are connected
+
+2. Prim's Algorithm
+
+Starts with one vertex and grows MST one edge at a time
+Always adds the lowest-weight edge that connects a visited node to an unvisited node
+Steps:
+Start from any node
+Use a priority queue (min-heap)
+Continue until all vertices are included
+
+| Property        | Value                                     |
+| --------------- | ----------------------------------------- |
+| Number of Edges | `V - 1` (where `V` is number of vertices) |
+| Unique?         | If all edge weights are unique            |
+| Cycle?          | No cycles allowed                         |
+| Graph Type      | Undirected, connected, weighted           |
+
+💻 Real-World Applications
+1. Network Design (telephone, electrical, water pipelines)
+2. Approximation algorithms (e.g., Traveling Salesman Problem)
+3. Clustering in ML
+4. Image segmentation

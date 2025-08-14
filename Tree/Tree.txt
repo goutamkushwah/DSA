@@ -1,0 +1,536 @@
+Tree - Tree data structure is a hierarchical structure that is used to represent and 
+       organize data in the form of parent child relationship. The following are some
+       real world situations which are naturally a tree.
+       The topmost node of the tree is called the root, and the nodes below it are called 
+       the child nodes. Each node can have multiple child nodes, and these child nodes can 
+       also have their own child nodes, forming a recursive structure.
+
+Basic Terminologies In Tree Data Structure:
+ 1. Parent Node: The node which is an immediate predecessor of a node is called the parent node
+                of that node. {B} is the parent node of {D, E}.
+ 2. Child Node: The node which is the immediate successor of a node is called the child node 
+                of that node. Examples: {D, E} are the child nodes of {B}.
+3. Root Node: The topmost node of a tree or the node which does not have any parent node is 
+           called the root node. {A} is the root node of the tree. A non-empty tree must 
+           contain exactly one root node and exactly one path from the root to all other 
+           nodes of the tree.
+4. Leaf Node or External Node: The nodes which do not have any child nodes are called leaf 
+                            nodes. {I, J, K, F, G, H} are the leaf nodes of the tree.
+5. Ancestor of a Node: Any predecessor nodes on the path of the root to that node are called 
+                    Ancestors of that node. {A,B} are the ancestor nodes of the node {E}
+6. Descendant: A node x is a descendant of another node y if and only if y is an ancestor of x.
+7. Sibling: Children of the same parent node are called siblings. {D,E} are called siblings.
+8. Level of a node: The count of edges on the path from the root node to that node. 
+                  The root node has level 0.
+9. Internal node: A node with at least one child is called Internal Node.
+10. Neighbour of a Node: Parent or child nodes of that node are called neighbors of that node.
+11. Subtree: Any node of the tree along with its descendant.
+
+        1        ← Root
+       / \
+      2   3      ← Children of 1
+     / \   \
+    4   5   6    ← Leaf nodes (no children)
+Root: 1
+Parent of 2 and 3: 1
+Children of 2: 4, 5
+Leaf Nodes: 4, 5, 6
+Siblings: 2 and 3, 4 and 5
+Height of Tree: 2 (longest path: 1 → 2 → 4)
+Depth of node 5: 2 (1 → 2 → 5)
+
+Example            1
+                  / \
+                 2   3
+                / \   \
+               4   5   6
+
+How represent the tree
+1. Array - Index:  0  1  2  3  4  5
+           Value:  1  2  3  4  5  6
+           -------------------------------------|
+          |  Left child → 2*i + 1               |
+          |  Right child → 2*i + 2              |
+          |  Parent → (i - 1) // 2 (if i ≠ 0)   |
+          ---------------------------------------
+
+2. Linked list - data → value of the node
+                 left → reference to left child
+                 right → reference to right child  
+                          
+3. Adjacency List - Node 1 has children [2, 3, 4]
+                    Node 5 has children [6, 7]
+               
+
+Operation - 1. Create – create a tree in the data structure.
+            2. Insert − Inserts data in a tree.
+            3. Search − Searches specific data in a tree to check whether it is present or not.
+            4. Traversal:
+                     4.1  Depth-First-Search Traversal
+                       a pre order
+                       b in order
+                       c post order
+                       
+            
+                     4.2  Breadth-First-Search Traversal
+
+Types -1. General Tree
+          Each node can have any number of children.
+          No specific rules.
+
+                A
+              / | \
+             B  C  D
+               / \
+              E   F
+
+       2. Binary Tree
+          Each node has at most 2 children: left and right.
+
+              1
+             / \
+            2   3
+
+       3. Binary Search Tree (BST)
+           Binary tree where:Left child < Parent
+           Right child > Parent
+           📌 Used for fast searching, insertion.
+
+                  5
+                 / \
+                3   7
+
+Types of Binary Tree 
+1. Full Binary Tree - Every node has 0 or 2 children (no node has only 1 child).
+
+        1
+       / \
+      2   3
+     / \
+    4   5
+
+✅ Nodes have either zero or two children.
+
+2. Perfect Binary Tree - All internal nodes have 2 children.
+                      All leaf nodes are at the same level.
+
+        1
+       / \
+      2   3
+     / \ / \
+    4  5 6  7
+
+✅ Completely filled at every level.
+
+3. Complete Binary Tree - All levels are completely filled except the last.
+                          Last level is filled left to right.
+
+        1
+       / \
+      2   3
+     / \  /
+    4  5 6
+
+✅ No gaps from left to right on last level.
+
+4. Balanced Binary Tree - For every node, the height of left and right subtrees differ by at most 1.
+                        ✅ Maintains minimal height for better performance (O(log n) operations).
+                        Examples: AVL Tree, Red-Black Tree
+
+5. Degenerate (Skewed) Binary Tree - Each parent has only one child (either left or right).
+                                   Looks like a linked list.
+
+Left Skewed:
+
+    1
+   /
+  2
+ /
+3
+
+Right Skewed:
+
+1
+ \
+  2
+   \
+    3
+
+✅ Worst-case structure for a binary tree (O(n) operations).
+
+6. Binary Search Tree (BST) - For every node:
+                              Left child < Parent
+                              Right child > Parent
+
+
+        10
+       /  \
+      5    15
+     / \     \
+    3   7     20
+
+✅ Used for fast searching, inserting, and deleting.
+
+7. AVL Tree - A self-balancing binary search tree.
+The balance factor (difference in heights of left and right subtree) is –1, 0, or +1.
+✅ Keeps BST operations fast: O(log n)
+
+🛠️ Rotations in AVL Tree
+To maintain balance, AVL Tree uses rotations after insert/delete:
+
+1. LL Rotation (Single Right Rotation)
+Case: Node inserted in left-left position
+
+     30
+    /
+   20
+  /
+10
+➡ Rotate right around 30
+
+    20
+   /  \
+ 10    30
+
+2. RR Rotation (Single Left Rotation)
+Case: Node inserted in right-right position
+
+  10
+    \
+     20
+       \
+        30
+➡ Rotate left around 10
+
+    20
+   /  \
+ 10    30
+
+3. LR Rotation (Left-Right Rotation)
+Case: Node inserted in left-right position
+
+    30
+   /
+  10
+    \
+     20
+
+➡ First Left Rotate 10 → 20
+➡ Then Right Rotate 30 → 20
+
+    20
+   /  \
+ 10    30
+4. RL Rotation (Right-Left Rotation)
+Case: Node inserted in right-left position
+
+  10
+    \
+     30
+    /
+   20
+
+➡ First Right Rotate 30 → 20
+➡ Then Left Rotate 10 → 20
+
+    20
+   /  \
+ 10    30
+
+🧾 Example in Diagram Form
+Insert sequence: 10 → 20 → 30
+
+Inserting 10: no issue.
+
+Inserting 20: still okay.
+
+Inserting 30: causes RR imbalance, so apply left rotation.
+
+    10
+      \
+       20
+         \
+          30
+
+After Rotation:
+      20
+     /  \
+   10    30
+
+8. Expression Tree - An Expression Tree is a special kind of binary tree used to represent
+                     arithmetic expressions.
+               It is commonly used in compilers, calculators, and parsing math expressions.
+              * Operands (numbers or variables) → Leaf nodes
+              * Operators (+, –, , /) → Internal nodes
+              * The tree is built so that you can evaluate the expression by traversing it.
+
+    Example (3 + (4 * 5))
+                          
+                                  +
+                                 / \
+                                3   *
+                                   / \
+                                  4   5
+
+9. Splay Tree - A Splay Tree is a type of self-adjusting binary search tree (BST) where 
+               recently accessed elements are moved to the root of the tree using a process
+               called splaying.                                  
+ 
+ 1. 🔹 Zig (Single Right Rotation) - ➡️ Performed when the accessed node is left child of root.
+    
+    10
+   /
+  5
+Splay 5 → Right rotate 10
+
+   5
+    \
+    10
+
+2. 🔹 Zag (Single Left Rotation) - ➡️ Performed when the accessed node is right child of root.
+
+   10
+     \
+     15
+
+Splay 15 → Left rotate 10
+
+    15
+   /
+  10
+
+3. 🔹 Zig-Zig (Double Right Rotation)- ➡️ Node is left child of left child of grandparent.
+
+      30
+     /
+   20
+  /
+10
+
+Splay 10 → Right rotate 30, then right rotate 20
+
+   10
+     \
+     20
+       \
+       30
+
+4. 🔹 Zag-Zag (Double Left Rotation)➡️ Node is right child of right child of grandparent.
+
+   10
+     \
+     20
+       \
+       30
+
+Splay 30 → Left rotate 10, then left rotate 20
+
+       30
+      /
+    20
+   /
+  10
+
+5. 🔹 Zig-Zag (Right then Left)➡️ Node is right child of left child of grandparent.
+
+      30
+     /
+   10
+     \
+     20
+
+
+Splay 20 → Left rotate 10, then right rotate 30
+
+    20
+   /  \
+  10   30
+  
+6. 🔹 Zag-Zig (Left then Right)➡️ Node is left child of right child of grandparent.
+
+   10
+     \
+     30
+    /
+   20
+
+Splay 20 → Right rotate 30, then left rotate 10
+
+    20
+   /  \
+  10   30
+
+10. B- Tree - A B-Tree is a self-balancing search tree used to store sorted data and allow 
+              searches, sequential access, insertions, and deletions in logarithmic time.
+              It is widely used in databases and file systems.
+
+                        [10, 20]
+                        /   |   \
+                     <10 10–20  >20
+
+11. Threded Binary Tree - A Threaded Binary Tree is a special type of Binary Tree where the
+                         NULL pointers in the binary tree are replaced with pointers to 
+                        inorder predecessor or successor. This helps in faster inorder traversal
+                         without using a stack or recursion.                    
+
+Binary Tree Traversal - 
+1. Inorder (Left → Node → Right)
+    Visits the left subtree, then the root, then the right subtree.
+    In a Binary Search Tree (BST), this gives sorted order.
+
+      1
+     / \
+    2   3
+
+Inorder: 2 → 1 → 3
+
+2. Preorder (Node → Left → Right)
+   Visits the root first, then the left subtree, then the right subtree.
+
+      1
+     / \
+    2   3
+
+Preorder: 1 → 2 → 3
+
+3. Postorder (Left → Right → Node)
+   Visits the left, then the right, and then the root.
+
+      1
+     / \
+    2   3
+
+Postorder: 2 → 3 → 1
+
+Heap - A Heap is a complete binary tree that satisfies the heap property:
+Complete Binary Tree: All levels are filled, except possibly the last, which is filled from left to right.
+Heap Property: Every node must follow either:
+            Max-Heap: Parent ≥ children
+
+               50
+              /  \
+             30    40
+             / \   /
+            10  20 35
+
+            Min-Heap: Parent ≤ children
+                   
+                   10
+                  /  \
+                20    15
+                / \   /
+               30  40 50
+-------------------------------------------------------------------------------------------------------------------------------------------------
+| **Operation**          | **Binary Tree** | **Binary Search Tree (BST)** | **Balanced BST (AVL, Red-Black)** | **Heap (Min/Max)** | **B-Tree** |
+| ---------------------- | --------------- | ---------------------------- | --------------------------------- | ------------------ | ---------- |
+| **Search**             | O(n)            | O(h), Avg: O(log n)          | O(log n)                          | O(n)               | O(log n)   |
+| **Insert**             | O(n)            | O(h), Avg: O(log n)          | O(log n)                          | O(log n)           | O(log n)   |
+| **Delete**             | O(n)            | O(h), Avg: O(log n)          | O(log n)                          | O(log n)           | O(log n)   |
+| **Traversal (DFS)**    | O(n)            | O(n)                         | O(n)                              | O(n)               | O(n)       |
+| **Traversal (BFS)**    | O(n)            | O(n)                         | O(n)                              | O(n)               | O(n)       |
+| **Height Calculation** | O(n)            | O(h), Avg: O(log n)          | O(log n)                          | O(log n)           | O(log n)   |
+| **Space (recursive)**  | O(h)            | O(h)                         | O(log n)                          | O(log n)           | O(log n)   |
+| **Space (overall)**    | O(n)            | O(n)                         | O(n)                              | O(n)               | O(n)       |
+-------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+| **Tree Type**        | **Best Case**      | **Average Case** | **Worst Case** |
+| -------------------- | ------------------ | ---------------- | -------------- |
+| Binary Tree          | O(1)               | O(n)             | O(n)           |
+| Binary Search Tree   | O(1)               | O(log n)         | O(n)           |
+| AVL / Red-Black Tree | O(1)               | O(log n)         | O(log n)       |
+| Min/Max Heap         | O(1) (for max/min) | O(log n)         | O(log n)       |
+| B-Tree               | O(log n)           | O(log n)         | O(log n)       |
+---------------------------------------------------------------------------------
+
+Tree Sort is a comparison-based sorting algorithm that uses a Binary Search Tree (BST) to sort elements.
+
+Steps:Insert all elements of the array into a BST.
+      Perform an inorder traversal of the BST to get the elements in sorted order.
+
+    5
+   / \
+  3   7
+ / \
+2   4
+
+Inorder Traversal (Left → Root → Right):
+→ 2, 3, 4, 5, 7 ✅ Sorted!
+-----------------------------------------------------------------------------
+| **Operation**         | **Average Case**      | **Worst Case**            |
+| --------------------- | --------------------- | ------------------------- |
+| **Build BST**         | O(n log n)            | O(n²) (if unbalanced BST) |
+| **Inorder Traversal** | O(n)                  | O(n)                      |
+| **Total Time**        | O(n log n)            | O(n²)                     |
+| **Space**             | O(n) (for tree nodes) | O(n)                      |
+-----------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+| ✅ **Advantages**                  | ❌ **Disadvantages**                    |
+| --------------------------------- | -------------------------------------- |
+| Simple and easy to understand     | Can be slow if tree becomes unbalanced |
+| Good for learning BST and sorting | Extra memory used for tree nodes       |
+------------------------------------------------------------------------------
+
+Heap sort - Given: arr[] = {4, 10, 3, 5, 1}
+          Build a Max-Heap from the input array.
+        10
+       /  \
+      5    3
+     / \
+    4   1
+Swap the root (max element) with the last element: 10 ↔ 1, then reduce heap size.
+Heapify the root to maintain max-heap property.
+Repeat steps until the heap is of size 1.
+--------------------------------------------------
+| **Operation**          | **Complexity**        |
+| ---------------------- | --------------------- |
+| **Build Heap**         | O(n)                  |
+| **Heapify (per node)** | O(log n)              |
+| **Total Time**         | **O(n log n)**        |
+| **Space**              | **O(1)** (in-place) ✅ |
+---------------------------------------------------
+------------------------------------
+| Feature             | Value      |
+| ------------------- | ---------- |
+| **Stable**          | ❌ No       |
+| **In-place**        | ✅ Yes      |
+| **Time Complexity** | O(n log n) |
+| **Best Case**       | O(n log n) |
+| **Worst Case**      | O(n log n) |
+| **Average Case**    | O(n log n) |
+------------------------------------
+--------------------------------------------------------------------------------
+| Feature         | **Tree Sort**                 | **Heap Sort**              |
+| --------------- | ----------------------------- | -------------------------- |
+| Time Complexity | O(n log n) avg, O(n²) worst   | O(n log n) in all cases    |
+| Space           | O(n) (uses tree)              | O(1) (in-place) ✅          |
+| Stability       | ❌ Not stable                  | ❌ Not stable               |
+| Best Use Case   | Educational, BST applications | General-purpose sorting    |
+| Drawback        | Can become unbalanced         | Not stable (sorting order) |
+------------------------------------------------------------------------------------
+| Tree Type                | Structured? | Search Method | Time Complexity          |
+| ------------------------ | ----------- | ------------- | ------------------------ |
+| Binary Tree              | ❌ No        | DFS / BFS     | O(n)                     |
+| Binary Search Tree (BST) | ✅ Yes       | Optimized DFS | O(log n) avg, O(n) worst |
+| AVL / Red-Black          | ✅ Yes       | Optimized DFS | O(log n)                 |
+| N-ary Tree               | ❌ No        | DFS / BFS     | O(n)                     |
+| Trie                     | ✅ Yes       | Path matching | O(m)                     |
+
+------------------------------------- Tree Sort --------------------------------------------
+ What is Tree Sort?
+Tree Sort is a comparison-based sorting algorithm that builds a Binary Search Tree (BST)
+ from the elements to be sorted and then performs in-order traversal to get elements in 
+ sorted order.
+
+ Key Concepts:
+*. Insert all elements into a Binary Search Tree (BST).
+*. Inorder traversal of a BST gives sorted output.
+*. Time Complexity:
+*. Average case: O(n log n)
+*. Worst case (unbalanced tree): O(n²)
+*. Space Complexity: O(n)
+
+| Pros                                                                         | Cons                               |
+| ---------------------------------------------------------------------------- | ---------------------------------- |
+| Simple to understand                                                         | Worst case O(n²) if tree is skewed |
+| Can be adapted for sets                                                      | Not stable sorting                 |
+| Can be made efficient using self-balancing trees like AVL or Red-Black trees | Needs extra space for tree nodes   |

@@ -1,0 +1,60 @@
+Stack - A Stack is a linear data structure that follows a particular order in which the 
+        operations are performed. The order may be LIFO(Last In First Out) or 
+        FILO(First In Last Out). LIFO implies that the element that is inserted last, 
+        comes out first and FILO implies that the element that is inserted first, comes 
+        out last.
+        LIFO: Last In First Out
+              → The element inserted last is the first one to be removed.
+                                      -----> 5 (POP)
+                (push) 5 ---> |   5   |   ← top
+                              |   4   |
+                              |   3   |
+                              |   2   |
+                              |   1   |
+                           -------------
+
+ memory represention -- Index:     0     1     2     3     4
+                        Stack:   [10]  [20]  [30]  [  ]  [  ]
+                                              ↑
+                                             top
+                      
+How to represention - 1. Using Array
+                      2. Using Linked List  
+
+
+operation -1. push()	Adds (inserts) an element to the top of the stack.
+        2. pop()	Removes (deletes) the top element of the stack.
+        3. peek() / top()	Returns the top element without removing it.
+        4. isEmpty()	Checks whether the stack is empty.
+        5. isFull()	(For static stack) Checks whether the stack is full (used in array stack).
+        6. Size                             
+
+Application - 1. Forward and backward feature
+              2. Reversing a string 
+              3. Calculating of post fix expression
+              4. Notation conversion
+              5. Und and Redo operation on editiors
+              6. Tree treversal
+              7.  Evaluvating post fix expression  -- (Slove mathamatic Equation )
+              8.  Backtracking in games or recursion.
++--------------+--------------------------+------------------------------+--------------------+------------------+
+| Operation    | Array-Based Stack        | Linked List Stack            | Time Complexity    | Space Complexity |
++--------------+--------------------------+------------------------------+--------------------+------------------+
+| push()       | O(1)*                    | O(1)                         | Constant           | O(n)             |
+| pop()        | O(1)                     | O(1)                         | Constant           | O(n)             |
+| peek()       | O(1)                     | O(1)                         | Constant           | O(1)             |
+| isEmpty()    | O(1)                     | O(1)                         | Constant           | O(1)             |
+| isFull()     | O(1)                     | N/A (Dynamic, no limit)      | Constant           | —                |
+| size()       | O(1)                     | O(1)                         | Constant           | O(1)             |
++--------------+--------------------------+------------------------------+--------------------+------------------+
+
+Note - 🔍 Can We Perform Searching and Sorting in a Stack?
+✅ Technically Yes, But Not Efficiently
+Stacks are not designed for searching or sorting — they are LIFO structures where only the top element is accessible directly. However, you can implement searching and sorting using extra stacks or temporary data structures.
+
+🔎 1. Searching in Stack
+You can search by popping each element until you find the target.
+
+But this destroys the stack, unless you store popped items in a temporary stack and then push them back.
+  
+            

@@ -1,0 +1,79 @@
+Heap - A Heap is a complete binary tree data structure that satisfies the heap property:
+       for every node, the value of its children is greater than or equal to its own value.
+       Heaps are usually used to implement priority queues, where the smallest (or largest)
+       element is always at the root of the tree.
+
+A Heap is a complete binary tree that satisfies the heap property:
+Max Hwap - In a max-heap, the value of the parent node is always greater than or equal to 
+           the values of its children.
+
+Min Heap - In a min-heap, the value of the parent node is always less than or equal to the
+            values of its children.
+
+| Type     | Root Node Property       |
+| -------- | ------------------------ |
+| Max-Heap | Root is the **largest**  |
+| Min-Heap | Root is the **smallest** |
+
+Max Heap
+        50
+       /  \
+     30    40
+    / \   / \
+  10  20 35  25
+ 
+
+Min Heap
+        10
+       /  \
+     20    15
+    / \   / \
+  30  40 50  60
+
+| Operation   | Time Complexity |
+| ----------- | --------------- |
+| Insert      | O(log n)        |
+| Delete Root | O(log n)        |
+| Get Min/Max | O(1)            |
+| Heapify     | O(log n)        |
+| Build Heap  | O(n)            |
+
+Applications of Heap:
+
+1. Priority Queue
+2. Dijkstra’s algorithm (shortest path)
+3. Heap Sort
+4. Scheduling tasks
+5. Huffman coding
+
+-------------------------  Heap Sort ------------------------------------------------------
+ What is Heap Sort?
+Heap Sort is a comparison-based sorting algorithm that uses a binary heap data structure.
+Time Complexity: O(n log n)
+Space Complexity: O(1) (in-place)
+Not stable
+Can be used to sort an array efficiently
+
+ How Heap Sort Works (Steps)
+1. Build a Max-Heap from the input array.
+2. Swap the root (largest) element with the last element.
+3. Reduce the heap size by one.
+4. Heapify the root element again to maintain heap property.
+5. Repeat until the heap size is 1.
+
+| Case         | Time Complexity |
+| ------------ | --------------- |
+| Best Case    | O(n log n)      |
+| Average Case | O(n log n)      |
+| Worst Case   | O(n log n)      |
+| Space        | O(1) (in-place) |
+
+| Feature        | Description               |
+| -------------- | ------------------------- |
+| Technique      | Comparison-based          |
+| Structure Used | Binary Heap (usually Max) |
+| Time           | O(n log n) in all cases   |
+| Space          | O(1)                      |
+| Stable         | ❌ Not stable              |
+| In-place       | ✅ Yes                     |
+

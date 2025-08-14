@@ -1,0 +1,14 @@
+Stack -- Searching and sorting 
+Queue -- Searching and sorting 
+Linked-list -- Searching and sorting 
+Tree -- Searching and sorting 
+Graph -- Searching and sorting 
+
+
+Advance topic
+Backtracking -- NQueene , Branch and Bound , Assigment problem , Travlling salesman
+Divide and conqure 
+Greedy
+Dyanmic programing  
+
+  -- P and np problem

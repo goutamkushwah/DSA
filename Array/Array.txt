@@ -1,0 +1,161 @@
+Array - Array is a collection of items of the same variable type that are stored at 
+        contiguous memory locations. It is one of the most popular and simple data 
+        structures used in programming.
+ indexing start with 0 and go L-1 where L is length of array
+Syntax - 1 int arr[]=new int [];
+         2 int arr[] = {1, 2, 3, 4, 5};   
+         3 int arr[5] = {1, 2, 3, 4, 5};
+
+types - one dimentional arrays  ex-  1,2,3,4,5,6,7,8,9,10
+
+        multi dimentional arrays ex - 1,2,3
+                                      4,5,6
+                                      7,8,9
+memory - represtion -
+     a 1D - |-----------------------------------|
+            | 0 | 1 |2 |3 |4 |5 |6 |7 | 8 | 9|10|
+            |-----------------------------------|
+     
+     
+     b 2D - |----------|
+            | 00|01|02 |
+            |----------|
+            |10 |11 |12|
+            |----------|
+            |20| 21|22 |
+            |----------|
+Array Methods 
+     1   equal - check two array was equal
+     2   inexing 0 t0 L-1
+     3 accesing by index a[2] - third itam of arry
+     4 a[0]=1  put 1 on index 0 (first place)
+     5 length - get length of array arr.length
+
+operation - 1. Insertion - Adding an element to the array.
+              a begning
+                b end
+                c specific position
+                note - when you insert element on tha array you create an empty array and 
+                copy item on the new array and new array set the length of
+                 new array length = old array length +1
+          2. Deletion - Removing an element from the array.
+                a begning
+                b end
+                c specific position
+                note - Arrays in Java have fixed size. To "insert" or "delete", you must create
+                        a new array and copy elements, as you described.
+          3. Traversal - Accessing each element of the array.
+               a sequentially
+               b reverse order
+          4. Searching - Finding an element in the array.
+              1. Linear Search (Sequential Search)
+                iteam search one by one
+                 Use: Works on unsorted or sorted arrays.
+                 Time Complexity: O(n)
+                How it works: Goes through each element one-by-one until the target is found.
+               
+               2. Binary Search
+                  Use: Works only on sorted arrays.
+                  Time Complexity: O(log n)
+                  How it works: Repeatedly divides the array in half to find the target.
+              
+              3. Index Sequential Search : Index Sequential Search is a searching algorithm
+               that combines the efficiency of binary search on an index table with 
+               sequential search on data blocks. It’s more efficient than linear search and 
+               works best when data is sorted.
+                1. Divide the array into blocks.
+                2. Create an index table with the last element of each block and its 
+                starting index.
+                3. Search the index table to find the block that may contain the element.
+                4. Perform linear search within the block.
+            
+            4 Interpolation Search :Interpolation Search is an improved variant of
+             Binary Search used for uniformly distributed sorted arrays.
+             Instead of always checking the middle, it tries to guess where the element
+              might be using the formula:
+              pos = low + ((key - arr[low]) * (high - low)) / (arr[high] - arr[low])
+
+
+          5. Sorting - Arranging elements in a specific order.  
+           1. Bubble sort : How It Works: Repeatedly compares adjacent elements and swaps 
+                            them if they are in the wrong order.
+                            Best For: Simple, small datasets.
+                            
+                            Stable Sort: ✅ Yes
+
+             2. Selection Sort : How It Works: Repeatedly selects the minimum element and
+                                 places it at the beginning.
+                                 Best For: Learning purposes; not efficient for large 
+                                            datasets.
+                                  Stable Sort: ❌ No               
+             
+             3. Insertion Sort : How It Works: Builds the sorted array one item at a time
+                                 by inserting elements in the correct position.
+                                 Best For: Nearly sorted arrays or small datasets.
+                                 Stable Sort: ✅ Yes
+             
+             4. Merge Sort : How It Works: Divides the array into halves, sorts each half,
+                             and then merges them.
+                             Best For: Large datasets; guarantees O(n log n).
+                             Stable Sort: ✅ Yes
+
+             5️.Quick Sort : How It Works: Selects a pivot, partitions the array into two 
+                            halves, and recursively sorts them.
+                            Best For: General-purpose; performs well in practice.
+                            Stable Sort: ❌ No
+
+             6. Shell Sort : Shell Sort is an optimized version of Insertion Sort.
+             It works by comparing elements far apart (using a gap) and reducing the gap 
+             step-by-step until the final pass is a simple Insertion Sort.
+             Start with a large gap (e.g., n/2).
+             Sort elements that are gap distance apart.
+             Gradually reduce the gap (e.g., gap = gap/2).
+             Final pass is a standard Insertion Sort when gap = 1.
+             Best For:Medium-sized arrays where performance and space efficiency are both important.
+             Stable Sort: ❌ 
+              note - we learn tree sort in tree  and heap sort in heap
+
+Summary Table
+
+| Concept         | Java Syntax Example                  |
+|-----------------|-------------------------------------|
+| Declaration     | int[] arr = new int[5];             |
+| Initialization  | int[] arr = {1, 2, 3, 4, 5};        |
+| Access          | arr[2]                              |
+| Length          | arr.length                          |
+| Traversal       | for (int i : arr) { ... }           |
+| Insertion/Del.  | Create new array, copy elements     |
+---------------------------------------------------------
+Operation         Time Complexity      Space Complexity      Notes
+------------------------------------------------------------------------------------------------------- |
+Access            O(1)                 O(1)                 Direct access by index                     |
+Update            O(1)                 O(1)                 Direct update by index                     |
+Insertion                                                                                              |
+  - Beginning     O(n)                 O(n)                 Need to shift/copy elements to new array   | 
+  - End           O(n)                 O(n)                 Need to copy to new array                  |
+  - Middle        O(n)                 O(n)                 Need to shift/copy elements to new array   |
+Deletion                                                                                               |
+  - Beginning     O(n)                 O(n)                 Need to shift/copy elements to new array   |     
+  - End           O(n)                 O(n)                 Need to copy to new array                  |
+  - Middle        O(n)                 O(n)                 Need to shift/copy elements to new array   |
+Traversal         O(n)                 O(1)                 Visit each element once                    |   
+--------------------------------------------------------------------------------------------------------
+Note: n = number of elements in the array
+Search Type             Time Complexity      Space Complexity      Notes
+---------------------------------------------------------------------------------------------- ------------------------------|
+Linear Search           O(n)                 O(1)                 Checks one by one (works on sorted/unsorted arrays)        |
+Binary Search           O(log n)             O(1)                 Works only on sorted arrays; divides array in half         |
+Index Sequential Search O(√n) to O(n)        O(n)                 Uses index table + linear search in block (sorted only)    |
+Interpolation Search    Best: O(log log n)   O(1)                 Estimates position using formula (uniformly sorted arrays) |
+                         Avg: O(log n)                                                                                       |
+                         Worst: O(n)                                                                                         |
+------------------------------------------------------------------------------------------------------------------------------
+| Sorting Method     | How It Works                                             | Best For                               | Time Complexity (Avg) | Space Complexity | Stable Sort |
+| ------------------ | -------------------------------------------------------- | -------------------------------------- | --------------------- | ---------------- | ----------- |
+| **Bubble Sort**    | Compares and swaps adjacent elements until sorted        | Simple, small datasets                 | O(n²)                 | O(1)             | ✅ Yes       |
+| **Selection Sort** | Selects the minimum element and places it at the start   | Learning purpose                       | O(n²)                 | O(1)             | ❌ No        |
+| **Insertion Sort** | Inserts each element in its correct position             | Nearly sorted or small datasets        | O(n²)                 | O(1)             | ✅ Yes       |
+| **Merge Sort**     | Recursively splits and merges sorted arrays              | Large datasets; guaranteed performance | O(n log n)            | O(n)             | ✅ Yes       |
+| **Quick Sort**     | Picks pivot, partitions, and recursively sorts subarrays | General-purpose; fast in practice      | O(n log n)            | O(log n)         | ❌ No        |
+| **Shell Sort**     | Sorts with decreasing gap using insertion-like method    | Medium datasets; memory-efficient      | O(n log n) to O(n²)\* | O(1)             | ❌ No        |
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

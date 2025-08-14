@@ -1,0 +1,44 @@
+String - String is the type of object that can store a sequence of characters enclosed by
+         double quotes, and every character is stored in 16 bits, i.e., using UTF 16-bit 
+         encoding. A string acts the same as an array of characters. Java provides a robust
+         and flexible API for handling strings, allowing for various operations such as
+         concatenation, comparison, and manipulation.
+
+    Syntax    String a = "Hello"; 
+
+    Index	0	1	2	3	4	
+    Value	H	e	l	l	o	
+    indexing start with 0
+
+
+    creating string - 1. String Literal - String a = “Goutam Kushwah”; 
+                      2. Using new Keyword - String s = new String("Welcome");
+
+    function -   String str = "Hello World";
+
+       1. str.length();              // length of string
+        2. str.isEmpty();             // checks if empty
+        3. str.toLowerCase();         // to lowercase
+        4. str.toUpperCase();         // to uppercase
+        5. str.charAt(0);             // char at index
+        6. str.substring(0, 5);       // returns "Hello"
+        7. str.contains("World");     // true
+        8. str.equals("Hello");       // check equality
+        9. str.indexOf("o");          // index of first 'o'
+        10. str.replace("World", "Java"); // replace substring
+        11. str.trim();                // removes leading/trailing spaces
+    
+     String Concatenation--Concatenation means joining strings.
+      1. Using + Operator
+       String a = "Hello";
+        String b = "World";
+        String result = a + " " + b;  // Hello World
+     
+     2. Using concat() Method
+       String result = a.concat(" ").concat(b);  // Hello World
+
+     3. Using StringBuilder (Best in loops)
+      StringBuilder sb = new StringBuilder();
+     sb.append("Hello").append(" ").append("World");
+      System.out.println(sb.toString());
+     

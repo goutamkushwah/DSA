@@ -1,0 +1,50 @@
+Hashing - Hashing refers to the process of generating a fixed-size output from an input of
+        variable size using the mathematical formulas known as hash functions. This technique 
+        determines an index or location for the storage of an item in a data structure.
+
+Components of Hashing
+Key: A Key can be anything string or integer which is fed as input in the hash function the
+     technique that determines an index or location for storage of an item in a data structure. 
+Hash Function: The hash function receives the input key and returns the index of an element
+               in an array called a hash table. The index is known as the hash index.
+Hash Table: Hash table is a data structure that maps keys to values using a special function
+             called a hash function. Hash stores the data in n associative manner in an array
+              where each data value has its own unique index.        
+
+Example 50 % 7 = 1 → Index 1 → empty → ✅ place 50
+
+Index | Values
+------|-------------------
+0     | [700]
+1     | [50, 85, 92]
+2     | []
+3     | [73, 101]
+4     | []
+5     | []
+6     | [76]
+
+Collision - The hashing process generates a small number for a big key, so there is a possibility
+            that two keys could produce the same value. The situation where the newly inserted 
+            key maps to an already occupied, and it must be handled using some collision handling
+            technology.
+
+1. Chaining
+Store multiple elements at the same index using a list/linked list.
+Hash Table:
+Index 0 → []
+Index 1 → []
+Index 2 → [12, 22, 32]  ← collision handled by chaining
+
+2. Open Addressing
+If collision happens, find another empty slot:
+* Linear Probing: Check next slot → (hash + 1) % tableSize
+* Quadratic Probing: Jump further → (hash + i²) % tableSize
+* Double Hashing: Use second hash to find step size
+------------------------------------------------------------------------------
+| Method                | Description                                         |
+| --------------------- | --------------------------------------------------- |
+| **Chaining**          | Use a list at each index to store all collided keys |
+| **Linear Probing**    | Linearly search for next free space                 |
+| **Quadratic Probing** | Jump with increasing gap (1², 2²...)                |
+| **Double Hashing**    | Use second hash function to determine jump size     |
+-------------------------------------------------------------------------------

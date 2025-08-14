@@ -1,0 +1,94 @@
+Queue-  Queue is a linear data structure that follows FIFO (First In First Out) Principle, 
+        so the first element inserted is the first to be popped out.
+        LIFO: Last In First Out
+              → The element inserted last is the first one to be removed.
+               
+       Basic Terminologies of Queue
+       1. Front: Position of the entry in a queue ready to be served, that is, the first 
+                 entry that will be removed from the queue, is called the front of the
+                  queue. It is also referred as the head of the queue.
+       2. Rear: Position of the last entry in the queue, that is, the one most recently 
+                added, is called the rear of the queue. It is also referred as the tail
+                 of the queue.
+       3. Size: Size refers to the current number of elements in the queue.
+       4. Capacity: Capacity refers to the maximum number of elements the queue can hold.
+ memory represention - Array - Index:   0   1   2   3   4
+                                        ↓   ↓   ↓   ↓   ↓
+                        Queue:        [10, 20, 30, 40, 50]
+                                        ↑               ↑
+                                       Front           Rear
+
+                        Limked list  Front → [10] → [20] → [30] → null
+                                                            ↑
+                                                           Rear
+        
+
+                                                              
+How to represention - 1. Using Array
+                      2. Using Linked List  
+
+Types - 1. Simple Queue: Simple Queue simply follows FIFO Structure. We can only insert the
+                         element at the back and remove the element from the front of the 
+                         queue. A simple queue is efficiently implemented either using a
+                         linked list or a circular array.
+
+        3. Circular Queue- In a normal array-based queue, once rear reaches the end of the
+                           array, no more insertions can happen—even if space is free at 
+                           the front due to dequeue() operations.
+                           Circular Queue fixes this by wrapping the rear index back to the beginning. 
+
+        3.Double-Ended Queue (Deque): In a double-ended queue the insertion and deletion
+                                       operations, both can be performed from both ends.
+                                        They are of two types:
+        3.1 Input Restricted Queue: This is a simple queue. In this type of queue, the input 
+                                    can be taken from only one end but deletion can be done 
+                                    from any of the ends.
+       3.2 Output Restricted Queue: This is also a simple queue. In this type of queue,
+                                     the input can be taken from both ends but deletion can
+                                      be done from only one end.
+
+       4 Priority Queue: A priority queue is a special queue where the elements are accessed 
+                         based on the priority assigned to them. They are of two types:
+      4.1 Ascending Priority Queue: In Ascending Priority Queue, the elements are arranged in increasing order of their priority values. Element with smallest priority value is popped first.
+      4.2 Descending Priority Queue: In Descending Priority Queue, the elements are arranged in decreasing order of their priority values. Element with largest priority is popped first.
+
+
+operation -1. enqueue() - Insertion of elements to the queue.
+           2. dequeue() - Removal of elements from the queue.
+           3. getFront()- Acquires the data element available at the front node of the queue without deleting it.
+           4. getRear() - This operation returns the element at the rear end without removing it.
+           5. isFull() - Validates if the queue is full.
+           6. isEmpty() - Checks if the queue is empty.
+           7. size() - This operation returns the size of the queue i.e. the total number of elements it contains.  
+                             
+
+Application - 1. it is used in storing a web browsing history
+              2. storing undo operation 
+              3. for fast access
+
+📊 Queue Operations: Time and Space Complexity Table
+
++----------------+-----------------------------+------------------------------+--------------------------+------------------+
+| Operation      | Array-Based Queue (Static) | Linked List Queue (Dynamic) | Time Complexity         | Space Complexity |
++----------------+-----------------------------+------------------------------+--------------------------+------------------+
+| enqueue()      | O(1)*                       | O(1)                         | Constant                 | O(n)             |
+| dequeue()      | O(n)**                      | O(1)                         | Linear (array) / Constant (LL) | O(n)       |
+| getFront()     | O(1)                        | O(1)                         | Constant                 | O(1)             |
+| getRear()      | O(1)                        | O(1)                         | Constant                 | O(1)             |
+| isFull()       | O(1)                        | N/A                          | Constant                 | —                |
+| isEmpty()      | O(1)                        | O(1)                         | Constant                 | O(1)             |
+| size()         | O(1)                        | O(1)                         | Constant                 | O(1)             |
++----------------+-----------------------------+------------------------------+--------------------------+------------------+
+
+Notes:
+* enqueue() in array is O(1) only if space is available; resizing makes it O(n).
+** dequeue() in static array is O(n) due to element shifting; in Linked List it's O(1).
+
+
+Yes, ✅ you can perform searching and sorting in a queue, but just like with stacks, it’s not efficient or direct due to the FIFO (First In First Out) nature of queues.
+
+🔍 Can We Perform Searching and Sorting in a Queue?
+Operation	Possible?	Explanation
+Searching	✅ Yes	You can search by traversing all elements from front to rear. But you can’t access elements randomly like in an array. You'll usually need to dequeue each element, check it, and store it temporarily if you want to preserve the queue.
+Sorting	✅ Yes	Sorting can be done using auxiliary queues, arrays, or other data structures. However, this breaks the pure FIFO rule temporarily during the sort.
+
